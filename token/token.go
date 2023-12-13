@@ -22,6 +22,9 @@ const (
 	IDENT = "IDENT"
 	INT   = "INT"
 
+	EQ     = "=="
+	NOT_EQ = "!="
+
 	// Operators
 	ASSIGN   = "="
 	PLUS     = "+"
