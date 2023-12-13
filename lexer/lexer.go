@@ -23,15 +23,14 @@ func New(input string) *Lexer {
 
 // goal is to give us the next character and advance our position in the input
 func (l *Lexer) readChar() {
-	if l.readPosition > len(l.input) {
-		// ASCII code for 'NUL'
+	if l.readPosition >= len(l.input) {
 		l.ch = 0
+	} else {
+		l.ch = rune(l.input[l.readPosition])
 	}
-	l.ch = rune(l.input[l.readPosition])
-
 	l.position = l.readPosition
-	l.readPosition = l.position + 1
 
+	l.readPosition += 1
 }
 
 // We look at the current character under examination (l.ch) and return a token depending on which character it is
@@ -58,11 +57,10 @@ func (l *Lexer) NextToken() token.Token {
 		tok.Literal = ""
 		tok.Type = token.EOF
 	}
-
+	l.readChar()
 	return tok
 }
 
 func newToken(tokenType token.TokenType, ch rune) token.Token {
-
 	return token.Token{Type: tokenType, Literal: string(ch)}
 }
