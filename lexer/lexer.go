@@ -38,7 +38,9 @@ func (l *Lexer) readChar() {
 // We look at the current character under examination (l.ch) and return a token depending on which character it is
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
+
 	l.skipWhitespace()
+
 	switch l.ch {
 	case '=':
 		if l.peekChar() == '=' {
