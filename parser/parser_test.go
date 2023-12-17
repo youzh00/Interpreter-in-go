@@ -14,7 +14,14 @@ func TestLetStatements(t *testing.T) {
 	let foobar = 838383;
 	`
 	l := lexer.New(input)
+	// fmt.Println("This is from the Parser Test Method")
+	// fmt.Println(l.NextToken().Type)
+	// for tok := l.NextToken(); tok.Type != token.EOF; tok = l.NextToken() {
+	// 	fmt.Printf("%+v\n", tok)
+	// }
+
 	p := New(l)
+
 	program := p.ParseProgram()
 
 	if program == nil {
@@ -45,9 +52,7 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 		t.Errorf("s.TokenLiteral not 'let'. got=%q", s.TokenLiteral())
 		return false
 	}
-
 	letStmt, ok := s.(*ast.LetStatement)
-
 	if !ok {
 		t.Errorf("s not *ast.LetStatement. got=%T", s)
 		return false
@@ -62,5 +67,6 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 		t.Errorf("s.Name not '%s'. got=%s", name, letStmt.Name)
 		return false
 	}
+
 	return true
 }

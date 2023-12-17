@@ -28,6 +28,7 @@ func (p *Program) TokenLiteral() string {
 	return ""
 }
 
+// Type that implement the Statement Interface
 type LetStatement struct {
 	Token token.Token
 	Name  *Identifier
@@ -39,9 +40,10 @@ func (ls *LetStatement) TokenLiteral() string {
 	return ls.Token.Literal
 }
 
+// Type that implement the Expression Interface
 type Identifier struct {
 	Token token.Token
-	Value Expression
+	Value string
 }
 
 func (i *Identifier) expressionNode() {}
