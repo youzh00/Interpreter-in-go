@@ -145,7 +145,7 @@ func TestIdentifierExpression(t *testing.T) {
 	}
 }
 
-// ------------------ TEST IDENTIFIERS ---------------------//
+// ------------------ TEST INTEGERS	 ---------------------//
 
 func TestIntegerLiteralExpression(t *testing.T) {
 	input := "5;"
