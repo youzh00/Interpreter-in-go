@@ -20,6 +20,7 @@ const (
 	CALL        // myFunction(X)
 )
 
+// precedence table
 var precedences = map[token.TokenType]int{
 	token.EQ:       EQUALS,
 	token.NOT_EQ:   EQUALS,
@@ -214,4 +215,19 @@ func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParseFn) {
 }
 func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
 	p.infixParseFns[tokenType] = fn
+}
+
+func (p *Parser) peekPrecedence() int {
+
+	if p, ok := precedences[p.peekToken.Type]; ok {
+		return p
+	}
+	return LOWEST
+}
+func (p *Parser) curPrecedence() int {
+
+	if p, ok := precedences[p.curToken.Type]; ok {
+		return p
+	}
+	return LOWEST
 }
