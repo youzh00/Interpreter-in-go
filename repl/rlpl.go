@@ -9,12 +9,12 @@ import (
 	"github.com/youzh00/Interpreter-in-go/token"
 )
 
-const PROMPT = ">> "
+const PROMPTL = ">> "
 
-func Start(in io.Reader, out io.Writer) {
+func Startl(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
 	for {
-		fmt.Printf(PROMPT)
+		fmt.Printf(PROMPTL)
 		scanned := scanner.Scan()
 		if !scanned {
 			return
